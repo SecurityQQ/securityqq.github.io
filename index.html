@@ -1,3 +1,923 @@
----
-layout: home
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Alex Varga — Tech founder · AI agents & generative media</title>
+  <meta name="description" content="Alex Varga — tech founder, AI agents & generative media, ex-Yandex ML (YSDA). Building AI products from 0 to 1 in San Francisco." />
+  <link rel="canonical" href="https://alexvarga.xyz/" />
+  <meta property="og:title" content="Alex Varga — Tech founder · AI agents & generative media" />
+  <meta property="og:description" content="Tech founder, AI agents & generative media, ex-Yandex ML (YSDA). Building AI products from 0 to 1 in San Francisco." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://securityqq.github.io/" />
+  <meta property="og:image" content="https://securityqq.github.io/assets/images/alex-avatar.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@vargastartup" />
+  <meta name="twitter:title" content="Alex Varga — Tech founder · AI agents & generative media" />
+  <meta name="twitter:description" content="Tech founder, AI agents & generative media, ex-Yandex ML (YSDA). Building AI products from 0 to 1 in San Francisco." />
+  <meta name="twitter:image" content="https://securityqq.github.io/assets/images/alex-avatar.jpeg" />
+  <meta name="theme-color" content="#FAF9F5" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32px.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon-64px.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="favicon-128px.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180px.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&family=Hanken+Grotesk:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Editorial design tokens — mirrored from alexvarga.xyz (ai-twin tailwind config) */
+    :root {
+      --ink: #141413;
+      --ink-soft: #3D3D3A;
+      --ink-muted: #5E5D59;
+      --ivory: #FAF9F5;
+      --ivory-deep: #F0EEE6;
+      --line: #E3E1D8;
+      --clay: #D97757;
+      --font-display: "Source Serif 4", Georgia, serif;
+      --font-ui: "Hanken Grotesk", system-ui, sans-serif;
+      --font-meta: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ivory);
+      color: var(--ink-soft);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    svg { display: inline-block; vertical-align: middle; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 249, 245, 0.9);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      font-family: var(--font-ui);
+    }
+    .nav-inner {
+      max-width: 680px; margin: 0 auto; height: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+    }
+    .nav-brand {
+      font-family: var(--font-display); font-size: 17px; color: var(--ink);
+      transition: color 0.15s ease;
+    }
+    .nav-brand:hover { color: var(--ink-muted); }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-links a {
+      font-size: 14px; color: var(--ink-muted); transition: color 0.15s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* Main */
+    .main { min-height: 100vh; }
+    .main ::selection { background: rgba(217, 119, 87, 0.25); }
+    .container {
+      max-width: 680px; margin: 0 auto;
+      padding: 48px 16px 80px;
+      display: flex; flex-direction: column; gap: 40px;
+    }
+    @media (min-width: 768px) { .container { padding-top: 80px; } }
+
+    /* Header */
+    .intro-row { display: flex; align-items: center; gap: 16px; }
+    @media (min-width: 768px) { .intro-row { gap: 20px; } }
+    .avatar {
+      width: 56px; height: 56px; flex-shrink: 0;
+      border-radius: 16px; object-fit: cover;
+    }
+    @media (min-width: 768px) { .avatar { width: 64px; height: 64px; } }
+    h1 {
+      margin: 0; font-family: var(--font-display); font-weight: 500;
+      font-size: 34px; line-height: 1.1; color: var(--ink);
+    }
+    @media (min-width: 768px) { h1 { font-size: 42px; } }
+    .summary {
+      margin: 16px 0 0; display: flex; align-items: flex-start; gap: 10px;
+      font-family: var(--font-display); font-size: 17px; line-height: 1.45;
+      color: var(--ink-soft);
+    }
+    .summary-dot {
+      margin-top: 0.5em; width: 8px; height: 8px; flex-shrink: 0;
+      border-radius: 9999px; background: var(--clay);
+    }
+    .meta-line {
+      margin: 8px 0 0; padding-left: 18px;
+      display: flex; flex-wrap: wrap; column-gap: 16px; row-gap: 4px;
+      font-size: 13.5px; color: var(--ink-muted);
+    }
+    .meta-line .meta-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: color 0.15s ease;
+    }
+    .meta-line .meta-link:hover { color: var(--ink); }
+    .cv-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 500; color: var(--ink);
+      text-decoration: underline; text-decoration-color: var(--clay);
+      text-underline-offset: 4px; transition: color 0.15s ease;
+    }
+    .cv-link:hover { color: var(--clay); }
+
+    /* Ask button row */
+    .ask-row {
+      margin-top: 28px; display: flex; flex-wrap: wrap;
+      align-items: center; column-gap: 16px; row-gap: 12px;
+    }
+    .agent-note { margin: 0; font-family: var(--font-meta); font-size: 12px; color: var(--ink-muted); }
+    .agent-note a {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-color: rgba(20, 20, 19, 0.25); text-underline-offset: 4px;
+      transition: text-decoration-color 0.15s ease;
+    }
+    .agent-note a:hover { text-decoration-color: var(--ink); }
+
+    /* Ask split button */
+    .ask-wrap { position: relative; display: inline-flex; }
+    .ask-pill {
+      display: inline-flex; align-items: stretch; border-radius: 9999px;
+      border: 1px solid rgba(20, 20, 19, 0.25); transition: border-color 0.15s ease;
+    }
+    .ask-pill:hover { border-color: var(--ink); }
+    .ask-main {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 0; background: none; cursor: pointer;
+      border-radius: 9999px 0 0 9999px; padding: 8px 12px 8px 14px;
+      font-family: var(--font-ui); font-size: 14px; font-weight: 500; color: var(--ink);
+      transition: background-color 0.15s ease;
+    }
+    .ask-main:hover { background: var(--ivory-deep); }
+    .ask-toggle {
+      display: inline-flex; align-items: center; cursor: pointer;
+      border: 0; border-left: 1px solid rgba(20, 20, 19, 0.15); background: none;
+      border-radius: 0 9999px 9999px 0; padding: 8px 12px 8px 8px;
+      color: var(--ink); transition: background-color 0.15s ease;
+    }
+    .ask-toggle:hover, .ask-toggle.is-open { background: var(--ivory-deep); }
+    .ask-toggle svg { transition: transform 0.15s ease; transform: rotate(90deg); }
+    .ask-toggle.is-open svg { transform: rotate(-90deg); }
+    .ask-menu {
+      position: absolute; left: 0; top: 100%; z-index: 50; margin-top: 6px;
+      display: none; flex-direction: column; min-width: 200px;
+      border-radius: 14px; border: 1px solid rgba(20, 20, 19, 0.25);
+      background: var(--ivory); padding: 6px;
+      box-shadow: 0 12px 32px rgba(20, 20, 19, 0.14);
+    }
+    .ask-menu.is-open { display: flex; }
+    .ask-menu button {
+      display: flex; width: 100%; align-items: center; gap: 10px;
+      border: 0; background: none; cursor: pointer; text-align: left;
+      border-radius: 9px; padding: 8px 10px;
+      font-family: var(--font-ui); font-size: 14px; color: var(--ink);
+      transition: background-color 0.15s ease;
+    }
+    .ask-menu button:hover { background: var(--ivory-deep); }
+    .ask-menu button.is-selected { font-weight: 600; }
+    .ask-menu button.is-selected .agent-mark { color: var(--clay); }
+    .ask-menu hr { margin: 4px 6px; border: 0; border-top: 1px solid var(--line); }
+    .toast {
+      position: fixed; bottom: 28px; left: 50%; z-index: 130;
+      transform: translate(-50%, 8px);
+      border-radius: 9999px; background: var(--ink); color: var(--ivory);
+      padding: 12px 18px; font-size: 13.5px;
+      box-shadow: 0 10px 28px rgba(20, 20, 19, 0.25);
+      opacity: 0; transition: all 0.2s ease; pointer-events: none;
+    }
+    .toast.is-shown { transform: translate(-50%, 0); opacity: 1; }
+
+    /* Blocks (Experience / Education / Also / Contact) */
+    .block {
+      display: grid; row-gap: 12px;
+      border-top: 1px solid var(--line); padding-top: 24px;
+    }
+    @media (min-width: 640px) { .block { grid-template-columns: 132px 1fr; column-gap: 32px; } }
+    .block-label {
+      margin: 0; font-family: var(--font-meta); font-weight: 400;
+      font-size: 11px; text-transform: uppercase; line-height: 24px;
+      letter-spacing: 0.14em; color: var(--ink-muted);
+    }
+    .block p { margin: 0; }
+    .exp-list li + li { margin-top: 6px; }
+    .exp-row { display: grid; grid-template-columns: 68px 1fr; column-gap: 12px; }
+    .exp-years { padding-top: 3px; font-family: var(--font-meta); font-size: 12px; color: var(--ink-muted); }
+    .exp-company, .exp-company a { color: var(--ink); }
+    .exp-role { color: var(--ink-muted); }
+
+    /* Project highlight (hover card) */
+    .ph {
+      position: relative; display: inline-block; cursor: default; white-space: nowrap;
+      margin-inline: -0.2em; padding-inline: 0.2em; border-radius: 0.35em;
+      text-decoration-line: underline; text-decoration-style: dotted; text-decoration-color: rgba(20, 20, 19, 0.3);
+      text-underline-offset: 5px; outline: none;
+      transition: background-color 0.15s ease, text-decoration-color 0.15s ease;
+    }
+    .ph.is-active { background: rgba(217, 119, 87, 0.15); text-decoration-color: transparent; }
+    .ph-tip {
+      position: absolute; bottom: 100%; z-index: 50; display: block;
+      width: 300px; max-width: calc(100vw - 24px); margin-bottom: 10px;
+      transform: translateX(-50%); pointer-events: none; visibility: hidden;
+    }
+    .ph.is-active .ph-tip { visibility: visible; }
+    .ph-anim {
+      display: block; transform-origin: bottom;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      opacity: 0; transform: scale(0.94);
+    }
+    .ph.is-active .ph-anim { opacity: 1; transform: scale(1); }
+    .ph-card {
+      display: block; white-space: normal;
+      border-radius: 12px; border: 1px solid var(--line);
+      background: var(--ivory); padding: 16px;
+      text-align: left; font-weight: normal; text-decoration: none;
+      box-shadow: 0 12px 32px rgba(20, 20, 19, 0.14);
+    }
+    .ph-card-head { display: flex; align-items: center; gap: 10px; }
+    .ph-icon-wrap { color: var(--clay); display: inline-flex; }
+    .ph-icon { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ph-card-title { font-family: var(--font-display); font-size: 17px; line-height: 1.25; color: var(--ink); }
+    .ph-card-meta { display: block; margin-top: 6px; font-size: 12.5px; line-height: 1.375; color: var(--ink-muted); }
+    .ph-card-body { display: block; margin-top: 10px; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+    .ph-arrow {
+      position: absolute; left: 50%; top: 100%; margin-top: -5px;
+      width: 10px; height: 10px;
+      transform: translateX(-50%) rotate(45deg);
+      border-bottom: 1px solid var(--line); border-right: 1px solid var(--line);
+      background: var(--ivory);
+    }
+    .ph.is-active .ph-icon > * {
+      stroke-dasharray: 1;
+      animation: ph-draw 0.55s ease-in-out both;
+      animation-delay: calc(var(--i) * 0.11s);
+    }
+    @keyframes ph-draw {
+      0% { stroke-dashoffset: 1; opacity: 0; }
+      20% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ph.is-active .ph-icon > * { animation: none; stroke-dasharray: none; }
+    }
+
+    /* Contact */
+    .contact-box {
+      margin-top: 16px; max-width: 260px;
+      border-radius: 16px; border: 1px solid var(--line); padding: 12px;
+    }
+    .contact-box img { display: block; width: 100%; mix-blend-mode: multiply; }
+    .contact-link {
+      color: var(--ink); text-decoration: underline;
+      text-decoration-color: var(--line); text-underline-offset: 4px;
+      transition: text-decoration-color 0.15s ease;
+    }
+    .contact-link:hover { text-decoration-color: var(--ink); }
+
+    /* Malevich easter egg */
+    .egg {
+      position: fixed; top: 32px; right: 32px; z-index: 50;
+      width: 64px; height: 64px; background: #fff;
+      border: 1px solid #F9FAFB; cursor: pointer;
+      transform: rotate(12deg); opacity: 0.02;
+      transition: all 0.7s ease-in-out;
+    }
+    .egg:hover {
+      opacity: 0.95; border-color: #E5E7EB;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      transform: rotate(12deg) scale(1.05);
+    }
+    .egg-overlay {
+      position: fixed; inset: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; animation: egg-fade-in 0.5s ease-in-out;
+    }
+    .egg-modal {
+      background: rgba(255, 255, 255, 0.95);
+      -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+      border-radius: 16px; border: 1px solid #E5E7EB;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      padding: 32px; max-width: 28rem; margin: 0 16px;
+      pointer-events: auto; animation: egg-slide-up 0.5s ease-out;
+      text-align: center;
+    }
+    .egg-emoji { font-size: 60px; margin-bottom: 16px; }
+    .egg-title { margin: 0 0 16px; font-size: 24px; font-weight: 600; color: #1F2937; }
+    .egg-modal p { margin: 0; color: #4B5563; line-height: 1.625; }
+    .egg-modal .egg-mention { margin-top: 8px; padding-top: 8px; border-top: 1px solid #E5E7EB; color: #374151; font-weight: 500; }
+    .egg-close {
+      margin-top: 16px; padding: 8px 24px; border: 0; cursor: pointer;
+      background: #1F2937; color: #fff; border-radius: 8px;
+      font-family: var(--font-ui); font-size: 16px;
+      transition: background-color 0.15s ease;
+    }
+    .egg-close:hover { background: #374151; }
+    @keyframes egg-fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes egg-slide-up { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/">Alex Varga</a>
+      <ul class="nav-links">
+        <li><a href="https://alexvarga.xyz/blog">blog</a></li>
+        <li><a href="https://varg.ai?utm_source=alexvarga">varg.ai</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="egg" id="egg" title="White on White"></div>
+
+    <div class="container">
+      <!-- intro -->
+      <header>
+        <div class="intro-row">
+          <img class="avatar" src="assets/images/alex-avatar.jpeg" alt="Alex Varga" width="80" height="80" />
+          <h1>Alex Varga</h1>
+        </div>
+        <p class="summary">
+          <span class="summary-dot" aria-hidden="true"></span>
+          <span>ML engineer and ex-Yandex ML researcher (YSDA) building AI products from 0 to 1. Built AI agent and generative media infrastructure (DSL, model routing across 100+ models, MCP, durable execution) and a profitable bootstrapped SaaS. At Yandex, engineered the #1 ads ranking factor that lifted revenue by $6&ndash;12M.</span>
+        </p>
+        <p class="meta-line">
+          <span>San Francisco, CA</span>
+          <a class="meta-link" href="https://x.com/vargastartup">
+            <svg viewBox="0 0 24 24" aria-label="X" style="width:11px;height:11px;fill:currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            @vargastartup
+          </a>
+          <a class="meta-link" href="https://www.linkedin.com/in/alexmsecurity">
+            <svg viewBox="0 0 24 24" aria-label="LinkedIn" style="width:12px;height:12px;fill:currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            in/alexmsecurity
+          </a>
+          <a class="meta-link" href="https://github.com/SecurityQQ">
+            <svg viewBox="0 0 24 24" aria-label="GitHub" style="width:13px;height:13px;fill:currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            SecurityQQ
+          </a>
+          <a class="cv-link" href="https://alexvarga.xyz/alex-varga-cv.pdf" download="Alex_Varga_CV.pdf">
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            CV
+          </a>
+        </p>
+        <div class="ask-row">
+          <div class="ask-wrap" id="ask-wrap">
+            <div class="ask-pill">
+              <button type="button" class="ask-main" id="ask-main" title="Ask Claude about Alex, with a ready prompt">
+                <svg class="agent-mark" viewBox="0 0 24 24" aria-hidden="true" data-icon="claude" style="width:15px;height:15px;fill:currentColor;color:var(--clay)"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+                <span id="ask-label">Ask Claude</span>
+              </button>
+              <button type="button" class="ask-toggle" id="ask-toggle" aria-haspopup="menu" aria-expanded="false" aria-label="Choose an assistant">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+            <div class="ask-menu" id="ask-menu" role="menu">
+              <button type="button" role="menuitem" data-agent="claude" class="is-selected">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;fill:currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+                Claude
+              </button>
+              <button type="button" role="menuitem" data-agent="chatgpt">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;fill:currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+                ChatGPT
+              </button>
+              <hr />
+              <button type="button" role="menuitem" id="ask-copy">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+                Copy prompt
+              </button>
+            </div>
+          </div>
+          <p class="agent-note">or AI Agent? <a href="https://alexvarga.xyz/llms.txt">llms.txt</a> &middot; <a href="https://alexvarga.xyz/resume.json">resume.json</a></p>
+        </div>
+      </header>
+
+      <!-- Experience -->
+      <section class="block">
+        <h2 class="block-label">Experience</h2>
+        <div>
+          <ul class="exp-list">
+            <li class="exp-row">
+              <span class="exp-years">2025&ndash;now</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="https://varg.ai" target="_blank" rel="noopener noreferrer">varg.ai</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path pathLength="1" style="--i:1" d="m6.2 5.3 3.1 3.9"/><path pathLength="1" style="--i:2" d="m12.4 3.4 3.1 4"/><path pathLength="1" style="--i:3" d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></span>
+                          <span class="ph-card-title">varg.ai</span>
+                        </span>
+                        <span class="ph-card-meta">Co-founder, CEO & CTO &middot; Oct 2025 &ndash; now</span>
+                        <span class="ph-card-body">One API and developer platform built for AI agents ($250K ARR): inference orchestration across 100+ frontier models, MCP servers, agent workflows and durable execution. Built and open-sourced varg.ai/sdk (DSL for multimodal generation and cloud GPU video rendering). Hired 2 teams to ship multi-agent workflows producing 30,000 videos/month, and deployed an AI video-coach GPU pipeline for Simple ($160M ARR) whose new app beat their main app.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Co-founder, CEO & CTO</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2025</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="https://github.com/VeyraX/veyrax-platform" target="_blank" rel="noopener noreferrer">VeyraX</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><rect pathLength="1" style="--i:0" width="7" height="7" x="3" y="3" rx="1"/><rect pathLength="1" style="--i:1" width="7" height="7" x="14" y="3" rx="1"/><rect pathLength="1" style="--i:2" width="7" height="7" x="14" y="14" rx="1"/><rect pathLength="1" style="--i:3" width="7" height="7" x="3" y="14" rx="1"/></svg></span>
+                          <span class="ph-card-title">VeyraX</span>
+                        </span>
+                        <span class="ph-card-meta">Co-founder & CTO &middot; Feb 2025 &ndash; Jul 2025</span>
+                        <span class="ph-card-body">Shipped embedded AI components to production in early 2025 &mdash; live Gmail, Calendar, Slack and Jira data rendered as interactive UI inside agent workflows &mdash; ~8 months before OpenAI and Anthropic. Tool-calling agents with agent memory operating 80+ connectors via UI and API, a 3,000-server MCP marketplace; owned the integrations core and grew @veyraxai to ~1K.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Co-founder & CTO</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2024&ndash;now</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="https://bulkimagegeneration.com" target="_blank" rel="noopener noreferrer">BulkImageGeneration.com</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M18 22H4a2 2 0 0 1-2-2V6"/><path pathLength="1" style="--i:1" d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle pathLength="1" style="--i:2" cx="12" cy="8" r="2"/><rect pathLength="1" style="--i:3" width="16" height="16" x="6" y="2" rx="2"/></svg></span>
+                          <span class="ph-card-title">BulkImageGeneration.com</span>
+                        </span>
+                        <span class="ph-card-meta">Founder &middot; Jul 2024 &ndash; now</span>
+                        <span class="ph-card-body">Built and shipped to production a 0&rarr;1 product for image generation at scale: small businesses generate up to 100 images in parallel via an AI agent workflow and inference orchestration pipeline, with programmatic SEO driving profitable growth from month 1.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Founder</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2024&ndash;25</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="https://good-food.ge" target="_blank" rel="noopener noreferrer">Good-Food.Ge</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path pathLength="1" style="--i:1" d="M7 2v20"/><path pathLength="1" style="--i:2" d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+                          <span class="ph-card-title">Good-Food.Ge</span>
+                        </span>
+                        <span class="ph-card-meta">CTO & Growth (exited) &middot; Jul 2024 &ndash; Jun 2025</span>
+                        <span class="ph-card-body">Joined a 10-person meal-plan delivery business as a partner with end-to-end ownership of tech and growth: hired the engineering and digital marketing teams, shipped a custom ERP + CRM ordering platform, and ran fast experiments across acquisition and analytics &mdash; driving 3x revenue and 30% profit margin before selling my stake to the founder.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; CTO & Growth (exited)</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2022</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="https://polyfire.com" target="_blank" rel="noopener noreferrer">Newton (HF0, now: PolyFire)</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path pathLength="1" style="--i:1" d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path pathLength="1" style="--i:2" d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path pathLength="1" style="--i:3" d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+                          <span class="ph-card-title">Newton (HF0, now: PolyFire)</span>
+                        </span>
+                        <span class="ph-card-meta">Founding Engineer &middot; Jan 2022 &ndash; Dec 2022</span>
+                        <span class="ph-card-body">First hire working directly with the CEO (0&rarr;1, end-to-end ownership): built a knowledge retrieval, document search and people-ranking engine aggregating data across 50+ social networks, hired and led the engineering team, and shipped to production &mdash; driving 3x organic growth to 50K users, 15 customers, 13 partnerships, #1 SEO ranking and 20% of the StarkNet ecosystem.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Founding Engineer</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2017&ndash;22</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="https://hack.moscow" target="_blank" rel="noopener noreferrer">RH</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path pathLength="1" style="--i:1" d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path pathLength="1" style="--i:2" d="M4 22h16"/><path pathLength="1" style="--i:3" d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path pathLength="1" style="--i:4" d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path pathLength="1" style="--i:5" d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+                          <span class="ph-card-title">RH</span>
+                        </span>
+                        <span class="ph-card-meta">Head of AI & Platform (Co-founder) &middot; Sep 2017 &ndash; Feb 2022</span>
+                        <span class="ph-card-body">Built a proprietary hackathon-as-a-service platform with automated ML evals and benchmarks &mdash; capturing ~45% market share across Russia, Belarus and Kazakhstan. Delivered 50+ hackathons and ML contests for 45K+ participants (incl. Hack.Moscow with 52 countries) for 40+ enterprise clients incl. NASA, Microsoft and McKinsey.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Head of AI & Platform (Co-founder)</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2019&ndash;21</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  <a href="http://steinbeis.de" target="_blank" rel="noopener noreferrer">Steinbeis Consulting Center AI</a>
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path pathLength="1" style="--i:1" d="M6.453 15h11.094"/><path pathLength="1" style="--i:2" d="M8.5 2h7"/></svg></span>
+                          <span class="ph-card-title">Steinbeis Consulting Center AI</span>
+                        </span>
+                        <span class="ph-card-meta">Head of Applied AI Lab &middot; Sep 2019 &ndash; Apr 2021</span>
+                        <span class="ph-card-body">Led R&D and end-to-end deployment of applied AI products (discovery &rarr; technical scoping &rarr; production rollout) at one of Central Europe&rsquo;s largest innovation hubs. Built and rolled out an AI receipt-recognition and retail-activation platform for Electrolux and Sanofi, and won industrial ML challenges for Bosch.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Head of Applied AI Lab</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2018&ndash;19</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  Science Map, TU Berlin
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path pathLength="1" style="--i:1" d="M15 5.764v15"/><path pathLength="1" style="--i:2" d="M9 3.236v15"/></svg></span>
+                          <span class="ph-card-title">Science Map, TU Berlin</span>
+                        </span>
+                        <span class="ph-card-meta">Lead Engineer &middot; Jun 2018 &ndash; Jan 2019</span>
+                        <span class="ph-card-body">Secured $175K in EU startup grants to build a scientific literature search and knowledge-retrieval platform: hired 9 top developers from MIPT, relocated key engineers to Germany, and shipped the MVP to production.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Lead Engineer</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2017&ndash;18</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  Yandex Ads
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M3 3v16a2 2 0 0 0 2 2h16"/><path pathLength="1" style="--i:1" d="m19 9-5 5-4-4-3 3"/></svg></span>
+                          <span class="ph-card-title">Yandex Ads</span>
+                        </span>
+                        <span class="ph-card-meta">ML Researcher &middot; Dec 2017 &ndash; Jun 2018</span>
+                        <span class="ph-card-body">Worked across Ads Monetization and Search (BSc thesis, research &rarr; production): evaluated and ensembled 200+ production ML models and engineered the #1 ads ranking factor, lifting Yandex Ads revenue by 1&ndash;2% ($6&ndash;12M ARR) in online A/B testing.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; ML Researcher</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2017</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  Easy Ten
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head">
+                          <span class="ph-icon-wrap"><svg class="ph-icon" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" style="--i:0" d="M14 4.1 12 6"/><path pathLength="1" style="--i:1" d="m5.1 8-2.9-.8"/><path pathLength="1" style="--i:2" d="m6 12-1.9 2"/><path pathLength="1" style="--i:3" d="M7.2 2.2 8 5.1"/><path pathLength="1" style="--i:4" d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></svg></span>
+                          <span class="ph-card-title">Easy Ten</span>
+                        </span>
+                        <span class="ph-card-meta">Data Analyst &middot; Jul 2017 &ndash; Nov 2017</span>
+                        <span class="ph-card-body">Built the analytics stack from scratch for hundreds of thousands of users, engineered an online experimentation and ad automation platform managing $100K/month in ad spend (running 70% of Facebook ads A/B tests), and grew an automated Instagram acquisition channel to 75K followers.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Data Analyst</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="block">
+        <h2 class="block-label">Education</h2>
+        <div>
+          <ul class="exp-list">
+            <li class="exp-row">
+              <span class="exp-years">2025</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  EF
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head"><span class="ph-card-title">Entrepreneurs First (Paris)</span></span>
+                        <span class="ph-card-meta">Founder</span>
+                        <span class="ph-card-body">Entrepreneurs First &mdash; co-founder matching programme. Selected founder, Paris cohort.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Founder</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2014&ndash;18</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  MIPT
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head"><span class="ph-card-title">Moscow Institute of Physics and Technology (MIPT)</span></span>
+                        <span class="ph-card-meta">BSc Applied Mathematics & Computer Science</span>
+                        <span class="ph-card-body">Moscow Institute of Physics and Technology. GPA 4.75/5, math olympiad group.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; BSc Applied Math & CS</span>
+              </span>
+            </li>
+            <li class="exp-row">
+              <span class="exp-years">2016&ndash;18</span>
+              <span>
+                <span class="ph" tabindex="0">
+                  YSDA
+                  <span class="ph-tip" role="tooltip">
+                    <span class="ph-anim">
+                      <span class="ph-card">
+                        <span class="ph-card-head"><span class="ph-card-title">Yandex School of Data Analysis (YSDA)</span></span>
+                        <span class="ph-card-meta">Data Science (Master's-level program)</span>
+                        <span class="ph-card-body">Yandex School of Data Analysis, in parallel with MIPT. NLP and computer vision.</span>
+                      </span>
+                      <span class="ph-arrow"></span>
+                    </span>
+                  </span>
+                </span>
+                <span class="exp-role"> &middot; Data Science, master&rsquo;s-level</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Also -->
+      <section class="block">
+        <h2 class="block-label">Also</h2>
+        <div>
+          <p>Top-200 League of Legends player in Europe at 16. ~15 olympiad and hackathon wins. Sold AI-generated art for 1 ETH in 2019, before NFTs. Speak Russian and Hungarian. Sauna, Reading Club, Tennis, Math (for fun).</p>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="block">
+        <h2 class="block-label">Contact</h2>
+        <div>
+          <p>
+            Write what you see in this picture and send it to
+            <a class="contact-link" href="mailto:alex@varg.ai">alex@varg.ai</a>.
+          </p>
+          <div class="contact-box">
+            <img src="assets/images/klein.png" alt="A mathematical figure to describe in your message" width="786" height="544" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      'use strict'
+
+      /* ---- Project highlight: card follows the pointer, lerped ---- */
+      var CARD_MARGIN = 12
+
+      document.querySelectorAll('.ph').forEach(function (el) {
+        var tip = el.querySelector('.ph-tip')
+        var arrow = el.querySelector('.ph-arrow')
+        if (!tip) return
+        var target = 0
+        var x = 0
+        var frame = null
+
+        function place() {
+          var rect = el.getBoundingClientRect()
+          var half = tip.offsetWidth / 2
+          var min = CARD_MARGIN + half - rect.left
+          var max = window.innerWidth - CARD_MARGIN - half - rect.left
+          var clamped = Math.min(Math.max(x, min), max)
+          tip.style.left = clamped + 'px'
+          if (arrow) {
+            var off = Math.max(-half + 14, Math.min(half - 14, x - clamped))
+            arrow.style.transform = 'translateX(calc(-50% + ' + off + 'px)) rotate(45deg)'
+          }
+        }
+
+        function tick() {
+          x += (target - x) * 0.28
+          place()
+          if (Math.abs(target - x) > 0.3) frame = requestAnimationFrame(tick)
+          else frame = null
+        }
+
+        function pointTo(clientX, snap) {
+          var rect = el.getBoundingClientRect()
+          target = clientX - rect.left
+          if (snap) {
+            x = target
+            place()
+          } else if (!frame) {
+            frame = requestAnimationFrame(tick)
+          }
+        }
+
+        function center() {
+          var rect = el.getBoundingClientRect()
+          pointTo(rect.left + rect.width / 2, true)
+        }
+
+        el.addEventListener('mouseenter', function (e) {
+          pointTo(e.clientX, true)
+          el.classList.add('is-active')
+        })
+        el.addEventListener('mousemove', function (e) { pointTo(e.clientX, false) })
+        el.addEventListener('mouseleave', function () {
+          el.classList.remove('is-active')
+        })
+        el.addEventListener('focus', function () {
+          center()
+          el.classList.add('is-active')
+        })
+        el.addEventListener('blur', function () { el.classList.remove('is-active') })
+      })
+
+      /* ---- Ask button ---- */
+      var SITE = 'https://alexvarga.xyz'
+      var SUMMARY =
+        'ML engineer and ex-Yandex ML researcher (YSDA) building AI products from 0 to 1. ' +
+        'Built AI agent and generative media infrastructure (DSL, model routing across 100+ models, MCP, durable execution) ' +
+        'and a profitable bootstrapped SaaS. At Yandex, engineered the #1 ads ranking factor that lifted revenue by $6\u201312M.'
+      var PROMPT =
+        "I'm looking at Alex Varga's personal site. Read " + SITE + "/llms.txt (his full background) " +
+        'and give me a short overview: who he is, what he has built, and what kinds of roles or projects ' +
+        "he'd be strongest at. Then I'll ask follow-up questions.\n\nIn short: " + SUMMARY
+
+      var AGENTS = {
+        claude: { name: 'Claude', url: function (p) { return 'https://claude.ai/new?q=' + encodeURIComponent(p) } },
+        chatgpt: { name: 'ChatGPT', url: function (p) { return 'https://chatgpt.com/?q=' + encodeURIComponent(p) } },
+      }
+      var KEY = 'av_agent'
+
+      var wrap = document.getElementById('ask-wrap')
+      var mainBtn = document.getElementById('ask-main')
+      var label = document.getElementById('ask-label')
+      var toggle = document.getElementById('ask-toggle')
+      var menu = document.getElementById('ask-menu')
+      var copyBtn = document.getElementById('ask-copy')
+      var toast = document.createElement('div')
+      toast.className = 'toast'
+      toast.setAttribute('role', 'status')
+      wrap.appendChild(toast)
+
+      var agent = AGENTS.claude
+      var open = false
+      try {
+        var saved = localStorage.getItem(KEY)
+        if (saved && AGENTS[saved]) agent = AGENTS[saved]
+      } catch (e) { /* storage blocked */ }
+
+      function syncAgent() {
+        label.textContent = 'Ask ' + agent.name
+        var current = agent === AGENTS.claude ? 'claude' : 'chatgpt'
+        menu.querySelectorAll('[data-agent]').forEach(function (b) {
+          b.classList.toggle('is-selected', b.getAttribute('data-agent') === current)
+        })
+        mainBtn.setAttribute('title', 'Ask ' + agent.name + ' about Alex, with a ready prompt')
+        var mark = mainBtn.querySelector('.agent-mark')
+        if (mark) mark.style.color = 'var(--clay)'
+      }
+      syncAgent()
+
+      function setOpen(v) {
+        open = v
+        menu.classList.toggle('is-open', open)
+        toggle.classList.toggle('is-open', open)
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+      }
+
+      function flash(msg) {
+        toast.textContent = msg
+        toast.classList.add('is-shown')
+        setTimeout(function () { toast.classList.remove('is-shown') }, 2800)
+      }
+
+      function copy(text) {
+        try {
+          return navigator.clipboard.writeText(text).then(
+            function () { return true },
+            function () { return false }
+          )
+        } catch (e) {
+          return Promise.resolve(false)
+        }
+      }
+
+      function ask(id) {
+        agent = AGENTS[id]
+        try { localStorage.setItem(KEY, id) } catch (e) { /* not essential */ }
+        syncAgent()
+        setOpen(false)
+        copy(PROMPT)
+        window.open(agent.url(PROMPT), '_blank', 'noopener')
+      }
+
+      mainBtn.addEventListener('click', function () { ask(agent === AGENTS.claude ? 'claude' : 'chatgpt') })
+      toggle.addEventListener('click', function () { setOpen(!open) })
+      menu.querySelectorAll('[data-agent]').forEach(function (b) {
+        b.addEventListener('click', function () { ask(b.getAttribute('data-agent')) })
+      })
+      copyBtn.addEventListener('click', function () {
+        setOpen(false)
+        copy(PROMPT).then(function (ok) {
+          flash(ok ? 'Prompt copied' : 'Could not copy: clipboard is blocked')
+        })
+      })
+      document.addEventListener('mousedown', function (e) {
+        if (open && !wrap.contains(e.target)) setOpen(false)
+      })
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false)
+      })
+
+      /* ---- Malevich easter egg ---- */
+      var egg = document.getElementById('egg')
+      var eggFound = false
+      var eggTimer = null
+
+      function showEggMessage() {
+        if (document.getElementById('egg-overlay')) return
+        var overlay = document.createElement('div')
+        overlay.className = 'egg-overlay'
+        overlay.id = 'egg-overlay'
+        overlay.innerHTML =
+          '<div class="egg-modal" role="dialog" aria-modal="true">' +
+          '<div class="egg-emoji">\uD83C\uDFA8</div>' +
+          '<h3 class="egg-title">Congratulations!</h3>' +
+          "<p>I'm very happy you found Malevich's <em>White on White</em>. You have a keen eye for subtlety and art!</p>" +
+          '<p class="egg-mention">Please mention \u201CMalevich\u201D when we talk in person \u2014 I\u2019d love to know it was you who discovered this.</p>' +
+          '<button type="button" class="egg-close" id="egg-close">Close</button>' +
+          '</div>'
+        document.body.appendChild(overlay)
+        overlay.querySelector('#egg-close').addEventListener('click', function () {
+          overlay.remove()
+          clearTimeout(eggTimer)
+        })
+        eggTimer = setTimeout(function () { overlay.remove() }, 8000)
+      }
+
+      egg.addEventListener('click', function () {
+        if (!eggFound) {
+          eggFound = true
+          showEggMessage()
+        } else {
+          var existing = document.getElementById('egg-overlay')
+          if (existing) existing.remove()
+          else showEggMessage()
+        }
+      })
+    })()
+  </script>
+</body>
+</html>
